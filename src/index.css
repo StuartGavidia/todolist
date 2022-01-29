@@ -5,9 +5,73 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 30px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  border: 1px solid black;
+  min-height: 500px;
+  width: 500px;
+  border-radius: 5%;
+  background-color: #0074d9
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: white;
+  background-color: #27277a;
+}
+
+.input {
+  max-width: 500px;
+}
+
+.input--form {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.input--text {
+  width: 300px;
+  height: 40px;
+  font-size: 30px
+}
+
+.todos {
+  padding: 20px;
+  margin-top: 0px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.todo {
+  border: 1px solid black;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  overflow-y: scroll;
+  color: white;
+}
+
+.todo--delete {
+  border-radius: 15px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.todo--item:hover {
+  color: grey;
+  cursor: pointer;
+}
+
