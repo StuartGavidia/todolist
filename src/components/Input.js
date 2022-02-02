@@ -2,13 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import Todos from './Todos'
 import { nanoid } from 'nanoid'
-import { useEffect } from 'react'
 
 export default function Input() {
 
     const [todos, setTodos] = useState([])
     const [currentTodo, setCurrentTodo] = useState("") 
-    const [listItems, setListItems] = useState([])
 
     function removeFromList(id) {
         setTodos(prevTodos => {
@@ -18,15 +16,6 @@ export default function Input() {
         })
     }
 
-    useEffect(() => {
-
-        setListItems(prevListItems => {
-            return todos.map(todo => {
-                return <Todos id={todo.id} handleClick={() => removeFromList(todo.id)} task={todo.value}/>
-            })
-        })
-    }, [todos])
-
     function handleChange(event) {
         const {value} = event.target
         setCurrentTodo(value)
@@ -35,12 +24,30 @@ export default function Input() {
     function handleSubmit(event) {
         event.preventDefault();
         setTodos(prevTodos => {
-            return [...prevTodos, {
+            return [{
                 value: currentTodo,
-                id: nanoid()
-            }]
+                id: nanoid(),
+                complete: false,
+                },
+                ...prevTodos
+            ]
         })
         setCurrentTodo("")
+    }
+
+    function completed(id) {
+        setTodos(prevTodos=> {
+            return prevTodos.map((item) => {
+                if(id == item.id){
+                    return {
+                        ...item,
+                        complete: !item.complete
+                    }
+                } else {
+                    return item
+                }
+            })
+        })
     }
 
     return (
@@ -50,7 +57,7 @@ export default function Input() {
                 <button>Submit</button>
             </form>
             <div className="todos">
-                {listItems}
+                {todos.map((todo, i) => <Todos id={todo.id} handleComplete={() => completed(todo.id)} complete={todo.complete} color={i%4} handleClick={() => removeFromList(todo.id)} task={todo.value}/>)}
             </div>
         </div>
     )
