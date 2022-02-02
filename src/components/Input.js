@@ -11,7 +11,7 @@ export default function Input() {
     function removeFromList(id) {
         setTodos(prevTodos => {
             return prevTodos.filter((value) => {
-                return value.id != id
+                return value.id !== id
             })
         })
     }
@@ -38,7 +38,7 @@ export default function Input() {
     function completed(id) {
         setTodos(prevTodos=> {
             return prevTodos.map((item) => {
-                if(id == item.id){
+                if(id === item.id){
                     return {
                         ...item,
                         complete: !item.complete

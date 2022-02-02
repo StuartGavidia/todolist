@@ -25,7 +25,7 @@ export default function Todos(props) {
             default: 
                 setColor("#5a5ada");
         }
-    }, [])
+    }, [props.color])
 
     return (
         <div style={{backgroundColor: color}} className="todo">
